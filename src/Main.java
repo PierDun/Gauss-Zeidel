@@ -1,16 +1,14 @@
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.Scanner;
 
 public class Main {
-    public static int EQUATIONS_NUMBER;
-    public static float REASONABLE_FAULT;
+    public static int EQUATIONS_NUMBER; // Количество уравнений в системе
+    public static float REASONABLE_FAULT; // Допустимая погрешность
 
     public static void main(String[] args) {
         System.out.println("Выберите способ ввода данных:\n1- файловый ввод;\n2- консольный ввод;\n3- рандомные коэффиценты\n" +
                 "Затем введите размерность матрицы и допустимую погрешность.");
         Scanner scanner = new Scanner(System.in);
-        int input_way = scanner.nextInt();
+        int input_way = scanner.nextInt(); // переменная определяет метод создания матрица
         EQUATIONS_NUMBER = scanner.nextInt();
         REASONABLE_FAULT = scanner.nextFloat();
 
@@ -42,7 +40,8 @@ public class Main {
 
         System.out.println("\nПогрешность:");
         for (int i = 0; i < solution.getSolutionSize(); i++) {
-            System.out.print("dx[" + (i + 1) + "] = " + Math.abs(solution.solution.get(i) - solution.previousSolution.get(i)) + " ");
+            float fault = Math.abs(solution.solution.get(i) - solution.previousSolution.get(i)); // Разница между новым и старым решением
+            System.out.print("dx[" + (i + 1) + "] = " + fault + " ");
         }
 
         System.out.println("\nКоличество итераций: " + solution.iterations);
